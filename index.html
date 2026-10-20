@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#183f31" name="theme-color"/>
+<meta content="디자인 제작물과 기획·이미지·출력 조건을 선택해 예상 작업 투입일수를 확인하는 사내 업무 산정기" name="description"/>
+<title>디자인 예상 소요일수 계산기 | SUDAM DESIGN v2.3.3</title>
+<link rel="stylesheet" href="./assets/css/styles.css">
+
+</head>
+<body>
+<div class="topline">디자인 요청 전 참고하는 사내 예상 작업일수 · 확정 납기 아님</div>
+<header class="header"><div class="header-inner"><a aria-label="상단으로" class="brand" href="#calculator"><span class="brand-mark">S</span><span class="brand-stack"><strong>SUDAM DESIGN</strong><small>디자인 소요일수 안내</small></span></a><span hidden="" id="itemCount"></span><nav aria-label="주요 페이지 메뉴" class="workspace-nav">
+<button aria-current="page" class="workspace-tab active" data-page="calculator" type="button"><span class="nav-icon">▦</span>소요일수 계산기</button>
+<button class="workspace-tab" data-page="standards" type="button"><span class="nav-icon">☷</span>전체 기준표</button>
+<button class="workspace-tab" data-page="guide" type="button"><span class="nav-icon">ⓘ</span>사용 가이드</button>
+</nav></div></header>
+<div class="shell" id="top">
+<div class="site-update-rail" aria-label="최신 버전"><span class="site-update-label">최신 업데이트</span><button aria-label="업데이트 내역 보기" class="header-release" id="headerRelease" title="업데이트 내역 열기" type="button"><span class="header-release-icon" aria-hidden="true">↻</span><span><b>업데이트 내역 <span class="release-version-chip">v2.3.3</span></b><small>2026.10.20</small></span><span aria-hidden="true">↗</span></button></div>
+<div class="app-view is-active" id="calculatorPage"><section class="hero"><div class="hero-main"><div class="eyebrow">DESIGN TIME ESTIMATOR</div><h1>디자인 예상 <em>소요일수 계산기</em></h1><p>만들고 싶은 디자인과 원하는 작업 범위를 선택하면, 예상 제작일수가 바로 계산돼요.</p></div>
+<div class="hero-side"><span>1인 작업 기준</span><strong>1일 = 8시간</strong><small>확정 납기가 아닌 예상 공수</small></div></section><div class="start-hint"><span><b>처음 방문하셨나요?</b> 3단계 선택으로 예상일수를 확인하세요.</span><button data-go-guide="" type="button">사용방법 보기 <span aria-hidden="true">↗</span></button></div><div aria-label="빠른 예시" class="quick"><span class="quick-label">빠른 시작</span><button data-preset="detail" type="button">상세페이지 · 고급 디자인</button><button data-preset="backlit" type="button">매장 백릿</button><button data-preset="reels" type="button">15초 릴스</button><button data-preset="proposal" type="button">회사소개서 10P</button></div><div class="page-grid"><main class="main-col">
+<section class="panel" id="step1"><div class="section-top"><div class="step">01</div><div><h2>무엇을 제작하시나요?</h2><span class="step-necessity is-required">필수 항목</span><p>찾는 제작물을 검색하거나 목록에서 선택하세요.</p></div></div><div class="search-wrap"><svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input aria-label="디자인 제작물 검색" autocomplete="off" id="searchInput" placeholder="제작물 검색 — 예: 상세페이지, 백릿, 릴스" type="search"/></div><div class="tabs" id="categoryTabs"></div><span class="result-count" id="resultCount"></span><div aria-label="제작물 선택" class="product-grid" id="productGrid"></div><button class="list-more" id="showMore" type="button">제작물 더보기 ↓</button><div class="chosen hidden" id="selectedNotice"><svg fill="none" height="20" stroke="currentColor" stroke-width="2.1" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg><div><strong id="selectedName"></strong><span id="selectedScope"></span></div></div></section>
+<section class="panel" id="step2"><div class="section-top"><div class="step">02</div><div><h2>어느 정도의 디자인 퀄리티를 원하시나요?</h2><span class="step-necessity is-required">필수 항목</span><p>원하는 결과물의 느낌을 골라주세요. 기획을 어디까지 맡길지는 다음 단계에서 따로 정할 수 있어요.</p></div></div><div class="level-grid quality-choice-grid">
+<button aria-pressed="true" class="level quality-choice-card active" data-quality="standard" type="button">
+  <span class="check">✓</span>
+  <span class="quality-choice-copy">
+    <em>일반 · STANDARD</em>
+    <strong>깔끔하고 보기 좋게</strong>
+    <small>내용과 가격이 한눈에 보이도록 기본적인 이미지 보정과 레이아웃을 완성해요.</small>
+    <span class="quality-chip-title">주요 작업</span>
+    <span class="quality-card-tags"><span>기본 레이아웃</span><span>정보·가격 배치</span><span>기본 이미지 보정</span></span>
+  </span>
+  <span class="quality-choice-visual"><span class="quality-visual-label">A안 · 기본 구성</span><img alt="갈비찜 일반 디자인 예시: 밝은 배경, 깔끔한 메뉴 사진과 가격 중심의 배치" src="./assets/images/quality-standard.jpg"/></span>
+</button>
+<button aria-pressed="false" class="level quality-choice-card" data-quality="advanced" type="button">
+  <span class="check">✓</span>
+  <span class="quality-choice-copy">
+    <em>심화 · PREMIUM</em>
+    <strong>더 정교하고 완성도 높게</strong>
+    <small>추가 제작 공수를 들여 이미지 연출과 글자·그래픽 디테일을 더 정교하게 다듬어요.</small>
+    <span class="quality-chip-title">추가 작업</span>
+    <span class="quality-card-tags"><span>이미지 연출·보정</span><span>맞춤 타이포</span><span>그래픽·디테일 제작</span></span>
+  </span>
+  <span class="quality-choice-visual"><span class="quality-visual-label">B안 · 표현 강화</span><img alt="같은 갈비찜 심화 디자인 예시: 타이틀 타이포그래피와 배경 연출, 그래픽 아이콘 등이 강화된 홍보물" src="./assets/images/quality-premium.jpg"/></span>
+</button>
+</div><div class="quality-foot"><span>두 선택 모두 완성된 디자인이에요. <b>차이는 표현의 정교함과 작업량</b>입니다.</span><button class="help-link" data-help="quality" type="button"><span aria-hidden="true">ⓘ</span> 퀄리티 차이 보기 <span aria-hidden="true">↗</span></button></div></section>
+<section class="panel" id="step3"><div class="section-top"><div class="step">03</div><div><h2>어디까지 디자이너에게 맡기고 싶으신가요?</h2><span class="step-necessity is-required">필수 항목</span><p>직접 정해둔 내용과 디자이너에게 제안받고 싶은 부분을 선택해 주세요.</p></div></div>
+<div class="field-title"><span>문구·구성은 어디까지 맡기시나요?</span><small>필수 · 1개 선택</small><button class="help-link" data-help="planning" type="button">상황별 예시 보기 ↗</button></div><div class="choice-list" id="planningChoices"></div>
+<div class="sub-section"><div class="field-title" id="mediaTitle">디자인에 사용할 사진은 준비되어 있나요? <small>필수 · 1개 선택</small></div><div class="choice-list" id="mediaChoices"></div><div class="note" hidden="" id="videoMediaNote">영상은 기획과 소스 탐색·촬영을 각각 별도 작업으로 합산합니다. 직접 촬영은 매장 내 기본 촬영 1회 기준입니다. 장거리 이동·모델 섭외·특수 장비 사용은 별도 협의가 필요합니다.</div><div aria-live="polite" class="video-live-summary" hidden="" id="videoLiveSummary"></div><button class="field-help-bottom" data-help="media" type="button">ⓘ 어떤 사진을 준비해야 하는지 예시로 보기 ↗</button></div>
+<div class="sub-section"><div class="toggle-line"><label for="composite"><strong><span>기존 사진으로 만들기 어려운 별도 합성 작업도 필요한가요? <span class="pill">+1일</span></span></strong><small>기본 이미지 배치와 별개로, 여러 사진을 정교하게 결합하거나 새로운 장면처럼 만드는 작업을 말해요.</small></label><input class="switch" id="composite" role="switch" type="checkbox"/></div></div><div class="sub-section request-boundaries" id="fixedRulesArea"><div class="field-title"><span>디자인할 때 꼭 지켜야 하는 내용이 있나요?</span><small>선택 · 추가 공수 없음</small></div><p class="boundary-desc">바꾸면 안 되는 것만 체크해 주세요. 선택 내용은 ERP 요청서에 함께 정리돼요.</p><div class="fixed-rule-grid"><label><input data-fixed-rule="문구 그대로 사용" type="checkbox"/> 전달한 문구는 바꾸지 말아 주세요</label><label><input data-fixed-rule="이미지 반드시 사용" type="checkbox"/> 지정한 사진·이미지를 꼭 써주세요</label><label><input data-fixed-rule="브랜드 규정 유지" type="checkbox"/> 지정한 색상·브랜드 규정은 지켜주세요</label><label><input data-fixed-rule="구성·배치 유지" type="checkbox"/> 전달한 구성·배치는 유지해 주세요</label></div><div aria-live="polite" class="fixed-rule-note" id="fixedRulesNote"></div></div></section>
+<section class="panel" id="step4"><div class="section-top"><div class="step">04</div><div><h2>추가로 필요한 작업이 있나요?</h2><span class="step-necessity is-optional">선택 항목</span><p>해당하는 조건만 선택해 주세요. 모든 항목을 고를 필요는 없어요.</p></div></div>
+<div class="conditional option-block" id="detailBlock"><div class="field-title"><span>한 화면에 담아야 할 내용이 많은가요?</span><small>선택사항</small><button class="help-link" data-help="density" type="button">차이 보기 ↗</button></div><div class="choice-list" id="densityChoices"></div><div class="note">같은 픽셀 길이라도 정보를 한 화면에 압축하거나, 표·아이콘·도식으로 다시 설계하면 시간이 더 소요됩니다.</div></div>
+<div class="conditional option-block" id="printBlock"><div class="field-title"><span>큰 사이즈로 인쇄할 예정인가요?</span><small>선택사항</small><button class="help-link" data-help="printing" type="button">차이 보기 ↗</button></div><div class="choice-list" id="printChoices"></div><div class="note">출력 크기가 크다는 이유만으로 자동 가산하지 않습니다. 실제 추가 보정이 필요할 때만 적용합니다. 기획 요청 3·4번째를 선택하고 단순 고해상도 보정이 필요하면 0.25일(2시간)만 가산합니다. 재합성은 별도 기준을 유지합니다.</div></div>
+<div class="option-block" id="revisionBlock"><div class="field-title"><span>기본 수정 외에 추가 변경이 예상되나요?</span><small>선택사항</small><button class="help-link" data-help="revision" type="button">차이 보기 ↗</button></div><div class="choice-list" id="revisionChoices"></div><div class="note">기본 제작 공수에는 가벼운 통합 수정 1회를 가정합니다. 전면 재기획·시안 전면 변경은 별도 협의가 필요합니다.</div></div>
+<div class="option-block"><div class="counter-wrap"><div><div class="field-title" style="margin-bottom:0">제작 수량</div><div class="note" style="margin-top:3px">동일 제작물의 독립적인 디자인 개수</div></div><div class="counter"><button aria-label="수량 1개 줄이기" id="decreaseQty" type="button">−</button><output aria-live="polite" id="quantityValue">1</output><button aria-label="수량 1개 늘리기" id="increaseQty" type="button">+</button></div></div><div class="warn hidden" id="qtyNotice">같은 디자인 콘셉트의 시리즈에 한해 추가 종은 기본 공수의 65%를 계산합니다. 콘셉트가 다르면 개별 제작물로 산정해 주세요.</div></div></section>
+</main>
+</div></div><section aria-label="전체 소요일수 기준표" class="app-view" hidden="" id="standardsPage">
+<div class="view-hero"><div class="view-kicker">ALL DESIGN ITEMS</div><h1>전체 소요일수 기준표</h1><p>기본 제작일수를 빠르게 비교해 보세요. 품목을 누르면 상세 조건을 계산할 수 있어요.</p><div class="view-meta"><span>기본 제작 기준 · 1일 8시간</span><span>기획·촬영·고해상도 보정은 별도</span></div></div>
+<div class="table-tools"><div class="standards-query"><span aria-hidden="true">⌕</span><input aria-label="기준표 제작물 검색" id="standardsSearch" placeholder="제작물 이름 검색" type="search"/></div><div class="table-buttons"><button class="tool-btn" id="downloadCsv" type="button">↓ CSV 저장</button><button class="tool-btn" id="printTable" type="button">▤ 인쇄 / PDF 저장</button></div></div>
+<div aria-label="제작물 분류" class="table-category-chips" id="standardsCategories"></div>
+<div class="table-toolbar-info"><div><b id="standardsCount">전체 제작물</b><span>★ 즐겨찾기 품목 먼저 표시 · 이름을 누르면 계산기로 이동</span></div><div class="mini-legend"><span>깔끔하고 보기 좋게 = 일반 / 더 정교하고 완성도 높게 = 심화</span><span>심화: 정교한 시각 표현</span></div></div>
+<div class="standard-table-wrap"><table class="standard-table"><thead><tr><th scope="col">제작물</th><th scope="col">기본 퀄리티</th><th scope="col">고급 퀄리티</th><th scope="col">바로가기</th></tr></thead><tbody id="standardTableBody"></tbody></table></div>
+<div class="standard-footer"><div><b>표에 나오는 것은 기본 제작일수입니다.</b><p>별도 기획·이미지 탐색·촬영·고해상도 출력 및 추가 수정이 필요하면 계산기에서 조건을 선택해야 해요.</p></div><button class="solid-btn" data-page="calculator" type="button">조건별 계산하기 →</button></div>
+</section><section aria-label="사용 가이드" class="app-view" hidden="" id="guidePage">
+<div class="view-hero"><div class="view-kicker">QUICK START</div><h1>처음 사용하시나요?</h1><p>어떤 걸 누를지 막막하다면, 실제 화면과 요청 예시를 보고 따라 해보세요.</p><div class="view-meta"><span>4단계 가이드</span><span>약 2분</span></div><div class="guide-hero-buttons"><button class="solid-btn" id="startTour" type="button">▶ 계산기에서 따라 하기</button><button class="tool-btn" data-page="calculator" type="button">바로 계산하기 →</button></div></div>
+<div class="guide-section-title"><div><span class="guide-eyebrow">HOW TO USE</span><h2>순서대로 따라 하기</h2><p>단계를 누르면 해당 화면과 설명만 표시됩니다. 이미지는 클릭하여 확대할 수 있어요.</p></div></div>
+<div aria-label="사용 방법 순서" class="guide-step-nav" role="tablist">
+<button aria-selected="true" class="guide-step-tab active" data-guide-step="1" role="tab" type="button"><b>01</b><span>제작물 고르기</span></button>
+<button aria-selected="false" class="guide-step-tab" data-guide-step="2" role="tab" type="button"><b>02</b><span>퀄리티 선택</span></button>
+<button aria-selected="false" class="guide-step-tab" data-guide-step="3" role="tab" type="button"><b>03</b><span>요청 범위</span></button>
+<button aria-selected="false" class="guide-step-tab" data-guide-step="4" role="tab" type="button"><b>04</b><span>결과·ERP</span></button>
+</div><div class="guide-step-grid">
+<article class="guide-step is-active" data-guide-panel="1"><div class="guide-step-head"><span class="guide-no">01</span><div><h3>원하는 제작물 고르기</h3><p>무엇을 만들고 싶은지만 선택하세요. 이름을 검색해도 돼요.</p></div></div><button aria-label="제작물 선택 실제 화면 확대" class="guide-shot" data-zoom="1" type="button"><img alt="새 계산기의 제작물 선택 화면" id="screenshotStep1" src="./assets/images/guide-step-1.jpg"/><span class="shot-open">↗ 확대</span><span class="shot-callout" data-guide-hint="1" style="--hx:74%;--hy:29%">1</span></button><p class="guide-step-tip"><span><strong>알아두세요</strong> 즐겨찾기는 자주 쓰는 제작물을 빠르게 찾을 때 사용하세요.</span></p></article>
+<article class="guide-step" data-guide-panel="2"><div class="guide-step-head"><span class="guide-no">02</span><div><h3>원하는 퀄리티 선택하기</h3><p>깔끔한 디자인인지, 표현을 더 정교하게 다듬은 디자인인지 고르세요.</p></div></div><button aria-label="디자인 수준 화면 확대" class="guide-shot" data-zoom="2" type="button"><img alt="기본·고급 퀄리티 선택 화면" id="screenshotStep2" src="./assets/images/guide-step-2.jpg"/><span class="shot-open">↗ 확대</span><span class="shot-callout" data-guide-hint="2" style="--hx:57%;--hy:48%">2</span></button><p class="guide-step-tip"><span><strong>알아두세요</strong> 모든 기획을 디자이너에게 맡기는 것과 퀄리티는 다른 선택이에요.</span></p></article>
+<article class="guide-step" data-guide-panel="3"><div class="guide-step-head"><span class="guide-no">03</span><div><h3>어디까지 맡길지 정하기</h3><p>문구·레이아웃을 얼마나 직접 정해뒀는지 고르고, 이미지 준비 상태도 알려주세요.</p></div></div><button aria-label="기획 및 소스 준비 옵션 화면 확대" class="guide-shot" data-zoom="3" type="button"><img alt="기획·이미지 준비 등 작업 범위 선택 화면" id="screenshotStep3" src="./assets/images/guide-step-3.jpg"/><span class="shot-open">↗ 확대</span><span class="shot-callout" data-guide-hint="3" style="--hx:78%;--hy:32%">3</span></button><p class="guide-step-tip"><span><strong>알아두세요</strong> 수정하면 안 되는 문구나 사진도 체크할 수 있어요. 소요일수에는 별도로 더하지 않아요.</span></p></article>
+<article class="guide-step" data-guide-panel="4"><div class="guide-step-head"><span class="guide-no">04</span><div><h3>예상일수 확인하고 ERP에 옮기기</h3><p>하단 결과바에서 예상일수를 확인하고, ERP 요청서에 필요한 내용만 복사하세요.</p></div></div><button aria-label="예상 투입일수 결과 화면 확대" class="guide-shot" data-zoom="4" type="button"><img alt="ERP 요청서 내용 정리와 복사 화면" id="screenshotStep4" src="./assets/images/guide-step-4.jpg"/><span class="shot-open">↗ 확대</span><span class="shot-callout" data-guide-hint="4" style="--hx:38%;--hy:47%">4</span></button><p class="guide-step-tip"><span><strong>알아두세요</strong> 실제 완료일은 업무 일정과 검토·협의 과정에 따라 달라질 수 있어요.</span></p></article>
+</div><div class="guide-step-controls"><span id="guideStepStatus">01 / 04 · 제작물 선택</span><div><button disabled="" id="guidePrev" type="button">← 이전</button><button id="guideNext" type="button">다음 단계 →</button></div></div><div class="erp-guide-feature">
+<div class="erp-guide-icon">▣</div><div><strong>ERP 디자인 요청서에 옮겨 적기</strong>
+<p>예상일수를 확인했다면 「ERP 요청서 정리」를 눌러보세요. 제작물·원하는 퀄리티·맡긴 업무 범위·필수 유지 조건을 요청서 항목별로 복사할 수 있어요.</p>
+<span>목적·희망 완료일·담당자 등 입력되지 않은 정보는 임의로 작성하지 않습니다.</span></div>
+<button data-open-erp-guide="" type="button">예시 보기 →</button>
+</div><button aria-label="ERP 문구 정리 화면 이미지 확대" class="erp-guide-preview" data-guide-erp-preview="" type="button"><img alt="ERP 요청서용 자동 정리 창 실제 화면" id="erpGuideImage" src="./assets/images/erp-guide.jpg"/><span>실제 화면 ↗ 확대 보기</span></button>
+<div class="guide-section-title"><div><span class="guide-eyebrow">EXAMPLES</span><h2>이런 요청이라면 이렇게</h2><p>예시를 고르면 실제 계산기에 해당 선택 조건이 자동으로 채워져요.</p></div></div>
+<div class="scenario-grid">
+<article class="scenario-card"><div class="scenario-icon">▦</div><span>상황 01 · 온라인</span><h3>신제품 상세페이지 제작</h3><p>설명 원고는 준비했지만, 콘셉트와 제품에 어울리는 이미지도 찾아야 해요.</p><div class="scenario-tags"><span>상세페이지 12,000px</span><span>심화</span><span>기획 필요</span><span>이미지 일부 탐색</span></div><button class="scenario-btn" data-scenario="detail" type="button">이 조건으로 계산하기 <b>→</b></button></article>
+<article class="scenario-card"><div class="scenario-icon">▷</div><span>상황 02 · 영상</span><h3>15초 릴스 만들기</h3><p>촬영본은 모두 제공하고, 컷 구성·자막을 포함한 편집을 요청하고 싶어요.</p><div class="scenario-tags"><span>릴스 15초</span><span>심화</span><span>기본 흐름 기획</span><span>소스 제공</span></div><button class="scenario-btn" data-scenario="reels" type="button">이 조건으로 계산하기 <b>→</b></button></article>
+<article class="scenario-card"><div class="scenario-icon">▧</div><span>상황 03 · 인쇄</span><h3>매장 백릿 교체</h3><p>문구와 디자인 방향은 정해졌지만, 출력용 이미지 보정이 필요해요.</p><div class="scenario-tags"><span>라이트패널·백릿</span><span>일반</span><span>이미지 제공</span><span>출력 보정</span></div><button class="scenario-btn" data-scenario="backlit" type="button">이 조건으로 계산하기 <b>→</b></button></article>
+</div>
+<div class="guide-section-title"><div><span class="guide-eyebrow">BEFORE REQUESTING</span><h2>디자인 요청 전 준비 체크리스트</h2><p>요청 내용이 명확할수록 실제 협의와 작업 진행도 빨라져요.</p></div></div>
+<div class="request-checklist"><div class="check-header"><div><strong>요청 전 확인사항</strong><span id="checkProgress">0 / 6개 준비됨</span></div><button class="tool-btn" id="copyChecklist" type="button">체크리스트 복사</button></div><div class="check-meter"><div id="checkMeterFill"></div></div><div class="check-items" id="checklistItems"></div><div class="check-footer">개인 체크 상태는 이 브라우저에 저장됩니다. 체크리스트는 실제 디자인 요청서가 아니라 사전 준비를 돕는 안내입니다.</div></div>
+<div class="guide-section-title"><div><span class="guide-eyebrow">COMMON QUESTIONS</span><h2>자주 묻는 질문</h2></div></div>
+<div class="faq-list"><details><summary>‘일반’과 ‘심화’는 어떤 차이인가요?<span>+</span></summary><p>일반은 제공된 자료로 신규 디자인을 제작하는 기본 공수입니다. 심화는 그래픽 표현·합성·세부 완성도를 높이는 디자인 수준입니다. 기획·별도 촬영·이미지 구매는 필요한 경우 따로 선택합니다.</p></details><details><summary>계산 결과가 실제 납기인가요?<span>+</span></summary><p>아니요. 1인 디자이너가 작업에 투입할 예상 공수입니다. 진행 중인 업무, 자료 제공, 협의 및 승인 대기 등에 따라 완료 일정은 달라집니다.</p></details><details><summary>같은 디자인의 크기만 바꾸면 어떻게 하나요?<span>+</span></summary><p>제작물을 '기존 디자인 규격 변경'으로 선택해 주세요. 처음부터 서로 다른 콘셉트로 제작한다면 각각 별도 신규 작업으로 계산합니다.</p></details><details><summary>사진·영상 소스가 없으면 어떻게 하나요?<span>+</span></summary><p>이미지·영상 준비 상태에서 탐색 또는 촬영 요청을 선택해 주세요. 외부 유료 콘텐츠 구매·전문 촬영팀·고난도 합성은 별도 협의가 필요할 수 있습니다.</p></details><details><summary>외부 공개 제작일 평균은 무엇인가요?<span>+</span></summary><p>크몽·숨고의 유사 상품에 공개된 안내 작업기간을 비교한 참고값입니다. 사내 디자이너가 실제 투입할 시간이나 확정 납기와 동일하지 않으므로 참고용으로만 확인해 주세요.</p></details></div>
+<div class="guide-bottom-cta"><div><strong>사용법을 확인했다면 이제 계산해 보세요.</strong><span>선택한 조건으로 예상 작업일수를 확인하고 요청서에 복사할 수 있어요.</span></div><button class="solid-btn" data-page="calculator" type="button">계산기 시작하기 →</button></div>
+</section></div>
+<div class="guide-zoom-overlay" hidden="" id="guideZoomOverlay"><div class="zoom-backdrop" data-zoom-close=""></div><section aria-labelledby="zoomTitle" aria-modal="true" class="zoom-dialog" role="dialog"><div class="zoom-head"><div><small>실제 계산기 화면</small><h2 id="zoomTitle">사용방법 자세히 보기</h2></div><button aria-label="닫기" class="zoom-close" data-zoom-close="" type="button">×</button></div><div class="zoom-content"><img alt="확대된 계산기 실제 화면" id="zoomImage"/></div><div class="zoom-footer"><p id="zoomDescription">단계별 설명</p><button class="tool-btn" data-zoom-close="" type="button">닫기</button></div></section></div><div aria-label="계산기 따라 하기" class="tour-coach" hidden="" id="tourCoach" role="dialog"><div class="tour-counter" id="tourCounter">단계 1 / 4</div><h3 id="tourHeading">제작물 선택</h3><p id="tourDesc">품목을 선택하세요.</p><div class="tour-actions"><button class="tour-dismiss" id="tourExit" type="button">종료</button><button class="tour-prev" id="tourBack" type="button">이전</button><button class="tour-next" id="tourNext" type="button">다음 →</button></div></div><footer class="fineprint"><div class="fineprint-content"><div><h3>산정 기준 및 제외사항</h3><p>1인 디자이너, 1일 8시간, 개별 신규 제작 1종 기준입니다. 같은 콘셉트의 2종 이상은 2번째부터 기본 공수의 65% 적용하며, 다른 콘셉트는 각각 별도 계산해야 합니다. 최종 결과와 선택 옵션은 4시간 미만일 때 시간·분으로, 4시간 이상일 때 일수로 표시합니다. 화면에 표시된 일수는 소수 둘째 자리로 반올림하며 실제 계산값은 변경하지 않습니다. 국내 산업디자인 대가기준의 산정 체계, 외부 디자인 업체의 공개 제작시간, 사내 디자인 공정에 기반한 <strong>초기 업무 산정용 추정치</strong>이며 공식 제작일수나 납기 보장은 아닙니다. 외부 유료 이미지·라이선스, 실제 인쇄·발주·시공, 번역, 법규 검토, 웹 개발·코딩·퍼블리싱·호스팅, 검토 및 승인 대기 등은 제외합니다. 릴스는 15초, 홍보영상은 30초·1분 완성본 기준입니다. 영상의 기획 범위는 0·1·2·3시간, 소스 준비는 0·2·8시간(현장 기본 촬영)이며 고급 촬영 및 별도 인력은 제외합니다. 심화의 추가 공수는 일반 제작 대비 과도하게 늘어나지 않도록 조정했습니다. 기획·이미지 탐색·합성·정보 재구성의 중복을 완화해 합산하되, 영상의 기획·소스 탐색·촬영은 독립 공수로 합산합니다. 고해상도 출력 보정 및 추가 수정은 필요한 경우 별도 가산합니다. 복잡한 신규 전략/브랜딩·자료 제작은 개별 협의가 필요합니다. 크몽·숨고 공개 작업일은 판매자별 납품 안내기간이며 사내 실측 투입시간과 다릅니다. 새 홍보영상 기준일수는 공식 평균이 아닌 초기 운영 추정치입니다.</p></div><details><summary>산정 참고자료 보기</summary><a href="https://www.dsninfo.or.kr/customer/detail.do?seq=1038533&amp;type=ARCHIVE" rel="noopener" target="_blank">산업디자인 대가기준</a><a href="https://apogeecorp.com/design-studio-sla-time-expectation-guide/" rel="noopener" target="_blank">Apogee 제작시간 사례</a><a href="https://kmong.com/" rel="noopener" target="_blank">크몽·숨고 공개 상품·전문가 안내 작업일(산정 근거에서 원문 보기)</a><a href="https://medium.com/@designbuffs/how-long-should-a-graphic-design-project-take-538c3302cfd1" rel="noopener" target="_blank">Design Buffs 작업 사례</a></details></div></footer><div class="toast" id="toast" role="status"></div>
+<div class="evidence-overlay" hidden="" id="evidenceOverlay"><div class="evidence-backdrop" data-close-evidence=""></div><section aria-labelledby="evidenceTitle" aria-modal="true" class="evidence-dialog" role="dialog" tabindex="-1"><header class="evidence-dialog-header"><div><small>DESIGN ESTIMATE SOURCES</small><h2 id="evidenceTitle">소요일수 산정 근거</h2><p id="evidenceSubtitle">공개 사례를 확인할 수 있습니다.</p></div><button aria-label="닫기" class="evidence-close" data-close-evidence="" type="button">×</button></header><div class="evidence-dialog-scroll" id="sourceEvidenceContent"></div><footer class="evidence-dialog-foot"><span>외부 납품 안내일 ≠ 사내 디자인 투입일수</span><button data-close-evidence="" type="button">닫기</button></footer></section></div>
+<div class="release-overlay" hidden="" id="releaseNotesOverlay">
+<div class="release-backdrop" data-release-close=""></div>
+<section aria-labelledby="releaseNotesTitle" aria-modal="true" class="release-dialog" role="dialog" tabindex="-1">
+<header class="release-dialog-header">
+<div><div class="release-overline">SUDAM · DESIGN ESTIMATOR</div><h2 id="releaseNotesTitle">업데이트 내역</h2><p>최신 버전 <b>v2.3.3</b> · 마지막 업데이트 <time datetime="2026-10-20">2026.10.20</time></p></div>
+<button aria-label="업데이트 창 닫기" class="release-close" data-release-close="" type="button">×</button>
+</header>
+<div aria-label="업데이트 정보 구분" class="release-dialog-nav" role="tablist">
+<button aria-controls="releasePanelHistory" aria-selected="true" class="release-tab active" data-release-tab="history" id="releaseTabHistory" role="tab" type="button">업데이트 내역 <span>28</span></button>
+<button aria-controls="releasePanelPlanned" aria-selected="false" class="release-tab" data-release-tab="planned" id="releaseTabPlanned" role="tab" type="button">추후 업데이트 예정 <span>3</span></button>
+</div>
+<div class="release-dialog-scroll">
+<div aria-labelledby="releaseTabHistory" class="release-panel" id="releasePanelHistory" role="tabpanel">
+<div class="release-intro"><strong>최신 변경부터 초기 제작까지</strong><p>이번 프로젝트에서 진행한 주요 개정사항을 순서대로 정리했습니다. <b>과거 버전 번호는 기록 관리를 위해 소급 부여</b>한 것으로, 초기 작업의 개별 배포 날짜가 모두 기록되어 있지는 않습니다. 기준일수는 가장 최신 파일을 우선 적용해 주세요.</p></div>
+<div class="release-timeline"><article class="release-entry release-entry-new"><div class="release-entry-index"><span class="release-entry-dot"></span></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.3.3</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">문구 정비</span></div><h4>퀄리티 안내 표현 일관성 개선</h4><ul><li>선택 카드·기준표·결과 요약·ERP 요청서의 퀄리티 안내 문구 통일</li><li>기존 일반·심화 선택 항목과 계산 방식 유지</li></ul></div></article><article class="release-entry"><div class="release-entry-index"><span class="release-entry-dot"></span></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.3.2</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">퀄리티 안내 개선</span></div><h4>퀄리티 선택 카드와 비교 예시 개선</h4><ul><li>기존 선택 옵션명과 계산 방식은 유지</li><li>선택 화면과 비교창에 동일 소재 A/B 시안 및 작업 범위 태그 제공</li></ul></div></article><article class="release-entry"><div class="release-entry-index"><span class="release-entry-dot"></span></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.3.0</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">화면 구성 개선</span></div><h4>하단 결과바와 비교 안내·업데이트 접근성 개선</h4><ul><li>예상 소요일수 중심으로 고정 결과바의 시각적 우선순위 강화</li><li>크몽·숨고 공개 참고 작업일 및 원문 링크를 결과와 함께 노출</li><li>처음부터 계산 버튼 추가, 필수·선택 입력 항목 구분</li><li>디자인 퀄리티 비교 예시 개선 및 업데이트 내역의 상단 우측 배치</li></ul></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.2.0</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">사용성 개선</span></div><h4>직원 관점의 선택 문구와 도움말·결과 동선 개선</h4><ul><li>원하는 디자인 퀄리티와 맡기고 싶은 기획 범위를 쉬운 표현으로 안내</li><li>사진 준비·특수 조건에 대한 비교 예시와 필수 유지사항 선택 추가</li><li>ERP 요청서 복사·사용 가이드·전체 기준표의 용어 일치</li><li>계산 결과를 하단 고정바에서 확인하고 업데이트 이력을 상단 메뉴로 이동</li></ul></div></article><article class="release-entry release-entry-new"><div class="release-entry-index"><span class="release-entry-dot"></span></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.1.0</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">UI/UX 개편</span></div><h4>계산기 중심의 사이트 구조 및 정보 위계 개선</h4><ul><li>상단 메뉴를 정리하고 계산기가 첫 화면의 중심이 되도록 재구성</li><li>예상 투입일수와 ERP 요청서 복사 기능의 가시성 강화</li><li>기준표의 탐색성을 높이고 가이드를 단계별 화면으로 간소화</li><li>업데이트 이력을 플로팅 메뉴로 이동하고 모바일 결과 접근성 개선</li></ul></div></article><article class="release-entry release-entry-new"><div class="release-entry-index"><span class="release-entry-dot"></span></div><div class="release-entry-card"><div class="release-entry-top"><span class="release-version">v2.0.0</span><time datetime="2026-10-20">2026.10.20</time><span class="release-entry-category">사용성 확장</span></div><h4>전체 기준표 및 직원용 사용 가이드 신설</h4><ul><li>제작물 전체 기준표의 검색·분류·즐겨찾기·인쇄 지원</li><li>실제 화면 설명과 단계별 따라 하기, 상황별 예시 자동 적용</li><li>디자인 요청 전 체크리스트 및 주요 안내 기능 추가</li><li>기존 계산식과 산정 근거를 공통 데이터로 연동</li><li>ERP 디자인 요청서에 활용할 항목별 문구 정리 및 복사 기능 추가</li></ul></div></article><article class="release-entry release-entry-new">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.7</span><time>2026.10.15</time><span class="release-entry-category">표시 방식 개선</span></div>
+<h4>최종 결과와 옵션의 단위 표시 통일</h4>
+<ul><li>선택 옵션과 최종 결과에서 시간·일수 표시 기준을 단순화</li><li>실제 산정값과 제작물별 기준은 그대로 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.6</span><time>2026.10.15</time><span class="release-entry-category">표시 규칙 개선</span></div>
+<h4>최종 소요일수와 선택 옵션 단위 정리</h4>
+<ul><li>최종 결과에서 일수 환산 후 남는 시간을 구분해 표시하도록 개선</li><li>선택 옵션과 산정 내역의 시간·일수 표기를 일관되게 정리</li><li>기존 제작물별 계산 기준과 추가 공수 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.5</span><time>2026.10.15</time><span class="release-entry-category">선택 옵션 UI 개선</span></div>
+<h4>선택 옵션의 시간·일수 표시 개선</h4>
+<ul><li>작은 작업은 시간, 일정 규모 이상의 작업은 일수로 구분해 보기 쉽게 정리</li><li>기존 예상 소요일수 계산 방식과 결과값 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.4</span><time>2026.10.15</time><span class="release-entry-category">선택 옵션 UI 개선</span></div>
+<h4>추가 작업 공수 표시 정비</h4>
+<ul><li>선택 옵션의 추가 작업 공수를 쉽게 확인할 수 있도록 표시 구성 개선</li><li>기본 산정 및 결과값 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.3</span><time>2026.10.15</time><span class="release-entry-category">결과 표시 개선</span></div>
+<h4>예상 작업량 표시 방식 통일</h4>
+<ul><li>최종 작업량을 하나의 기간으로 읽기 쉽게 표시</li><li>작업별 산정 내역과 최종 합산 결과를 명확하게 구분</li><li>전체 제작물에 동일한 기간 표시 규칙 적용</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.2</span><time>2026.10.15</time><span class="release-entry-category">계산 안정화</span></div>
+<h4>영상 옵션 합산 및 표시 방식 점검</h4>
+<ul><li>영상 기획과 소스 준비·촬영이 선택 조건에 맞게 정확히 반영되도록 계산 검증</li><li>추가 공수와 최종 작업량을 시간 단위로도 확인할 수 있도록 표시 개선</li><li>제작물 전환 시 이전 선택 조건이 혼입되지 않도록 정리하고 기존 기능 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.1</span><time>2026.10.15</time><span class="release-entry-category">영상 옵션</span></div>
+<h4>영상 추가 작업 공수 계산 보완</h4>
+<ul><li>영상 기획과 소스·촬영 공수를 독립적으로 계산하도록 분리</li><li>산정 내역에 추가 작업 항목을 개별 표시</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.8.0</span><time>2026.10.15</time><span class="release-entry-category">최신 업데이트</span></div>
+<h4>업데이트 내역 및 향후 개선계획 제공</h4>
+<ul><li>계산기 상단에 버전·최종 업데이트 날짜·주요 변경사항을 상시 표시</li><li>업데이트 내역 전체보기 팝업과 향후 업데이트 예정 탭 추가</li><li>기존 개선 이력을 한곳에 모아 최신순으로 확인하도록 정리</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.7.0</span><time>2026.10.15</time><span class="release-entry-category">영상·출력 기준</span></div>
+<h4>영상 제작 옵션 및 인쇄 보정 계산 개편</h4>
+<ul><li>상세페이지 제작 난이도별 기준을 재검토하고 조정</li><li>릴스 편집·촬영 구분을 요청 조건에 따른 옵션형으로 통합</li><li>영상 기획 및 소스 준비 상태를 단계별로 선택하도록 개선</li><li>홍보영상 30초·1분 항목 추가</li><li>기획 범위에 따라 대형 출력 고해상도 보정의 중복 공수를 조정</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.6.0</span><time>2026.10.15</time><span class="release-entry-category">근거자료 개선</span></div>
+<h4>크몽·숨고 최소/최대 작업일 별도 평균</h4>
+<ul><li>공개 작업기간의 최솟값과 최댓값을 일반·심화 평균에 각각 반영</li><li>플랫폼별·통합 참고 평균과 표본 수를 구분하여 표시</li><li>기획 포함형 등 기본 디자인과 직접 비교가 어려운 사례는 평균에서 제외</li><li>외부 평균을 사내 제작일수로 자동 대체하지 않도록 유지</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.5.0</span><time>2026.10.15</time><span class="release-entry-category">외부 비교·UI</span></div>
+<h4>숨고 교차검증과 근거 확인 팝업</h4>
+<ul><li>크몽 외에 숨고 전문가 공개 작업기간을 비교자료로 추가</li><li>예상 작업일수 옆에 외부 공개 참고 평균을 간단히 노출</li><li>상세 근거를 별도 팝업으로 변경하여 긴 출처 목록이 계산 내역을 아래로 밀지 않도록 개선</li><li>판매자·상품 링크, 공개 일수, 평균 반영 여부를 확인할 수 있도록 구성</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.4.0</span><time>2026.10.15</time><span class="release-entry-category">사용성 개선</span></div>
+<h4>자주 쓰는 품목·즐겨찾기·근거 표시 개선</h4>
+<ul><li>자주 요청하는 제작물을 전체보기 상단에 우선 정렬</li><li>품목별 별표 즐겨찾기 및 즐겨찾기 전용 탭 추가(브라우저에 개인별 저장)</li><li>‘소요일수 산정 근거 확인’ 영역의 명칭·접근성 개선</li><li>라이트패널·백릿 및 제안서 등 일부 기준일수를 요청 조건에 맞게 하향 조정</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.3.0</span><time>2026.10.15</time><span class="release-entry-category">난이도 계산</span></div>
+<h4>심화 디자인 공수 재조정</h4>
+<ul><li>일반·심화 간 과도한 작업일수 차이를 완화</li><li>기획·이미지 탐색·합성과 겹칠 수 있는 심화 기본 공수를 재검토</li><li>기존 기준과 조정 기준의 변경 비교자료 추가</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.2.0</span><time>2026.10.15</time><span class="release-entry-category">산정 운영 원칙</span></div>
+<h4>하향 우선 조정 및 크몽 근거 바로가기</h4>
+<ul><li>외부 자료를 이유로 기존 제작일수를 일괄 상향하지 않는 원칙 적용</li><li>합리적인 비교 근거가 있는 항목 위주로 기준일수 하향 검토</li><li>제작물별 대표 크몽 링크와 근거 빠른보기 구성</li><li>현수막·A형 배너·X배너를 별도 제작물로 분리</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.1.0</span><time>2026.10.15</time><span class="release-entry-category">외부자료·합산</span></div>
+<h4>크몽 공개 작업일 조사 및 중복 공수 완화</h4>
+<ul><li>크몽 상품별 공개 작업일과 상품 링크를 수집하고 기존 기준과 비교</li><li>기획·이미지 탐색·합성·정보 정리 등 관련 공정의 단순 합산을 완화</li><li>동일 디자인의 복수 규격 제작 시 공통 작업을 감안하는 운영 규칙 도입</li><li>외부 상품의 납품 안내기간과 사내 순수 제작 공수를 구분해 안내</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v1.0.0</span><time>2026.10.14~15</time><span class="release-entry-category">웹 계산기 최초 제작</span></div>
+<h4>다른 부서 요청자를 위한 웹 계산기 공개</h4>
+<ul><li>제작물 선택 → 일반·심화 → 기획·이미지·출력 옵션 → 예상 작업일수 순서로 구성</li><li>기본 공수와 추가 공수 구분, 결과 복사·조건 공유·반응형 화면 지원</li><li>상세페이지 9,000px 구간 제거 및 웹 계산기와 엑셀 기준표 연동</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.8</span><time>2026.10 (초기)</time><span class="release-entry-category">웹·편집 작업</span></div>
+<h4>리플릿·브로슈어 및 웹사이트·UI/UX 세분화</h4>
+<ul><li>리플릿과 브로슈어를 각각 1P·4P 기준으로 분리</li><li>카드뉴스 1장, 랜딩페이지 길이별 기준 추가</li><li>웹사이트 디자인·UI/UX 화면·와이어프레임 작업 추가(개발 제외)</li><li>촬영 항목 중 매장 음식 촬영 제거</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.7</span><time>2026.10 (초기)</time><span class="release-entry-category">인쇄 작업</span></div>
+<h4>인쇄 발주용 파일 제작 항목 추가</h4>
+<ul><li>원본 편집파일의 인쇄 발주파일 정리와 평면 이미지의 편집 가능한 인쇄파일 재구성을 분리</li><li>이미지 속 텍스트 재입력·레이아웃 재현·인쇄 규격 점검 공수 반영</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.6</span><time>2026.10 (초기)</time><span class="release-entry-category">제작물 확장</span></div>
+<h4>제작물 분류 확장 및 상세페이지 정교화</h4>
+<ul><li>가격표의 기존 서식 적용과 신규 디자인형 구분, 스티커·패키지·VMD 등 추가</li><li>상세페이지의 세로 픽셀 길이 및 정보 밀도에 따른 공수 적용</li><li>제안서·회사소개서 5P·10P·20P 단계와 긴 문서 편집 공수 재검토</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.5</span><time>2026.10 (초기)</time><span class="release-entry-category">단계 간소화</span></div>
+<h4>일반·심화 2단계와 릴스 기준 도입</h4>
+<ul><li>‘간단’ 단계를 삭제하고 일반/심화 2단계로 정리</li><li>릴스 길이를 15초로 고정해 산정 기준 명확화</li><li>대형 출력물 고해상도 보정·합성을 별도 조건으로 분리</li><li>상세 외부 검증자료 대신 공식 기준과 공개 제작사례 출처 중심으로 간소화</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.4</span><time>2026.10 (초기)</time><span class="release-entry-category">기준 근거</span></div>
+<h4>공식 디자인 기준 및 외부 제작 사례 검토</h4>
+<ul><li>산업디자인 개발의 대가기준과 공개 디자인 제작시간 사례를 참고</li><li>공식 산정 체계와 개별 품목 제작일수의 차이를 명시</li><li>개별 품목의 초기값은 사내 운영 추정치이며 공식 업계 평균이 아님을 안내</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.3</span><time>2026.10 (초기)</time><span class="release-entry-category">일수 환산</span></div>
+<h4>시간 기준을 작업일수 기준으로 변경</h4>
+<ul><li>시간 기반 산정값을 일수 기준으로 환산하는 체계 도입</li><li>짧은 작업은 시간으로, 긴 작업은 일수로 표시</li><li>별도 기획 공수 및 중요도·논의·검토로 인한 변동 가능성 명시</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.2</span><time>2026.10 (초기)</time><span class="release-entry-category">기준표 개선</span></div>
+<h4>일반 제작을 기본값으로 설정</h4>
+<ul><li>일반 제작 기준을 맨 앞에 배치하고 난이도 정의를 구체화</li><li>개별 디자인 요청 시 작업 범위와 기획 포함 여부를 구분</li></ul>
+</div>
+</article><article class="release-entry">
+<div class="release-entry-index"><span class="release-entry-dot"></span></div>
+<div class="release-entry-card">
+<div class="release-entry-top"><span class="release-version">v0.1</span><time>2026.10 (초기)</time><span class="release-entry-category">프로젝트 시작</span></div>
+<h4>제작물별 소요시간 기준표 작성</h4>
+<ul><li>디자인 제작물 유형별 초기 작업시간 정리</li><li>릴스 편집 항목을 포함하고 자동 산정용 표의 기초 데이터 작성</li></ul>
+</div>
+</article></div>
+</div>
+<div aria-labelledby="releaseTabPlanned" class="release-panel" hidden="" id="releasePanelPlanned" role="tabpanel">
+<div class="release-intro release-intro-future"><strong>향후 개선 방향</strong><p>현재는 <b>초기 업무 산정용 기준값</b>입니다. 실제 디자인 업무 기록과 비교해 정확도를 높이는 작업을 가장 우선할 예정입니다. 아래는 확정 개발 일정이 아닌 검토 계획입니다.</p></div>
+<div class="release-plan-list"><article class="release-plan"><div class="release-plan-num">01</div><div class="release-plan-body"><span class="release-plan-label">최우선 예정</span><h4>실제 작업 기록을 기반으로 산정 기준 보정</h4><p>실사용 과정에서 디자인 요청서·제작 시작·완료·수정 이력을 수집하고, 기존 예상일수와 실제 투입 공수를 비교해 제작물별 기준값을 정기적으로 조정합니다.</p><ul><li>일반 / 심화별 예상값과 실제 작업 공수의 차이 검증</li><li>자료 준비 상태·수정 횟수·기획 포함 여부별 오차 점검</li><li>오차가 큰 제작물부터 기준시간·추가 옵션 재산정</li></ul></div></article><article class="release-plan"><div class="release-plan-num">02</div><div class="release-plan-body"><span class="release-plan-label">검토 예정</span><h4>복합 옵션 중복 계산 로직 추가 검증</h4><p>기획·사진 탐색·합성·정보 압축이 동시에 선택될 때 계산 결과가 과도하거나 지나치게 낮지 않은지 실제 프로젝트 사례로 점검합니다.</p><ul><li>중복 조정 비율 및 수량별 65% 규칙의 적정성 검토</li></ul></div></article><article class="release-plan"><div class="release-plan-num">03</div><div class="release-plan-body"><span class="release-plan-label">검토 예정</span><h4>사용자 피드백을 반영한 항목·UI 보완</h4><p>다른 부서가 요청하기 어려워하는 제작물 명칭이나 선택 옵션을 개선하고, 업무 요청 빈도에 맞춰 기본 정렬 및 즐겨찾기 사용성을 보완합니다.</p><ul><li>누락된 제작물·설명 문구 보완</li><li>외부 근거 링크 유효성 및 기준 비교자료 주기적 점검</li></ul></div></article></div>
+</div>
+</div>
+<footer class="release-dialog-footer"><span>변경 내역은 다음 버전 배포 때 계속 누적됩니다.</span><button data-release-close="" type="button">닫기</button></footer>
+</section>
+</div>
+<div class="erp-overlay" hidden="" id="erpOverlay" role="presentation">
+<div class="erp-overlay-backdrop" data-close-erp=""></div>
+<section aria-labelledby="erpModalTitle" aria-modal="true" class="erp-dialog" role="dialog" tabindex="-1">
+<header class="erp-dialog-head">
+<div><span class="erp-eyebrow">FOR ERP DESIGN REQUEST</span><h2 id="erpModalTitle">ERP 디자인 요청서용 내용 정리</h2>
+<p>계산된 조건만 정리했어요. 필요한 항목을 복사해 ERP 요청서에 붙여넣으세요.</p></div>
+<button aria-label="ERP 안내창 닫기" class="erp-close" id="closeErp" type="button">×</button>
+</header>
+<div class="erp-dialog-scroll">
+<div class="erp-autofill-note"><span>✓</span><div><b>계산값 자동 반영</b> · 아래의 '요청 목적'과 '추가 설명'은 필요할 때만 입력하세요.<br/><small>ERP 양식으로 직접 전송하지 않으며, 복사 후 요청서의 해당 칸에 붙여넣는 방식입니다.</small></div></div>
+<div class="erp-optional-grid">
+<label>요청 목적 / 사용처 <small>(선택)</small><input id="erpPurpose" placeholder="예: 이수역점 신제품 출시 홍보" type="text"/></label>
+<label>추가 전달사항 <small>(선택)</small><input id="erpExtra" placeholder="예: 브랜드 톤앤매너 참고, 제품 사진 별도 전달" type="text"/></label>
+</div>
+<div class="erp-summary-heading"><strong>ERP 항목별 복사</strong><span>각 항목의 우측 버튼을 눌러 복사</span></div>
+<div class="erp-field-list" id="erpFields"></div>
+<div class="erp-summary-warning">※ 예상 소요일수는 담당 디자이너 1인 기준의 초기 작업량입니다. 실제 완료일은 업무 우선순위, 논의 및 승인 일정에 따라 달라집니다. <b>요청 목적, 희망 완료일, 첨부파일, 요청자·담당자 정보는 ERP에서 직접 확인해 주세요.</b></div>
+</div>
+<footer class="erp-dialog-foot"><button class="erp-copy-all" id="erpCopyAll" type="button">▣ ERP용 내용 전체 복사</button><button class="erp-secondary" id="erpDone" type="button">닫기</button></footer>
+</section>
+</div><button aria-controls="releaseNotesOverlay" aria-haspopup="dialog" aria-label="업데이트 v2.3.3, 2026년 10월 20일. 내역 보기" class="update-fab" id="openReleaseNotes" type="button">
+<span aria-hidden="true" class="update-fab-icon">↻</span><span class="update-fab-text"><strong>업데이트 <b>v2.3.3</b></strong><small>2026.10.20 · 내역 보기</small></span><span aria-hidden="true" class="update-fab-arrow">↗</span>
+</button><button aria-label="예상 작업일수 확인하기" class="mobile-estimate-bar" data-replaced="true" hidden="" id="mobileEstimateBar" type="button">
+<span><small>예상 작업 투입일수</small><strong id="mobileEstimateValue">—</strong></span><span class="mobile-estimate-go">결과 보기 ↑</span>
+</button><div class="choice-help-overlay" hidden="" id="choiceHelpOverlay" role="presentation"><div class="choice-help-backdrop" data-close-choice-help=""></div><section aria-labelledby="choiceHelpTitle" aria-modal="true" class="choice-help-dialog" role="dialog" tabindex="-1"><header class="choice-help-head"><div><div class="choice-help-eyebrow">선택을 돕는 예시</div><h2 id="choiceHelpTitle">어떤 걸 선택할까요?</h2><p id="choiceHelpSubtitle"></p></div><button aria-label="설명 창 닫기" id="closeChoiceHelp" type="button">×</button></header><div class="choice-help-body" id="choiceHelpBody"></div><footer class="choice-help-foot"><span>실제 제작물에 따라 작업 범위는 달라질 수 있어요.</span><button id="choiceHelpDone" type="button">확인했어요</button></footer></section></div><div class="sticky-estimate-bar" hidden="" id="stickyEstimateBar">
+  <div class="sticky-estimate-inner">
+    <div class="sticky-estimate-metric">
+      <span class="sticky-overline">예상 작업 투입일수</span>
+      <strong id="stickyEstimateTotal" aria-live="polite">—</strong>
+    </div>
+    <div class="sticky-estimate-detail">
+      <span class="sticky-detail-caption">현재 선택</span>
+      <strong id="stickyEstimateItem">제작물을 선택해 주세요</strong>
+      <span class="sticky-detail-note">1인 기준 · 확정 납기 아님</span>
+    </div>
+    <div class="sticky-evidence" id="stickyEvidence" aria-label="외부 참고 제작기간">
+      <span class="sticky-detail-caption">크몽 · 숨고 참고 작업일</span>
+      <div id="stickyBenchmarks" class="sticky-benchmarks">제작물을 선택하면 참고 자료가 표시됩니다.</div>
+      <div id="stickySourceLinks" class="sticky-source-links"></div>
+    </div>
+    <div class="sticky-estimate-actions">
+      <button aria-controls="estimateDrawer" aria-expanded="false" id="stickyBreakdown" type="button">산정 내역 <span>⌃</span></button>
+      <button id="stickyReset" type="button" title="모든 선택을 해제하고 새로 계산">처음부터 계산</button>
+      <button disabled="" id="stickyErp" type="button">ERP 요청서 복사 ↗</button>
+    </div>
+  </div>
+</div><div class="estimate-drawer" hidden="" id="estimateDrawer"><div class="estimate-drawer-backdrop" data-close-estimate-drawer=""></div><section aria-label="소요일수 산정 상세내역" aria-modal="true" class="estimate-drawer-sheet" role="dialog" tabindex="-1"><div class="estimate-drawer-title"><div><b>소요일수 상세 내역</b><small>선택 조건에 따른 계산 결과 및 참고자료</small></div><button aria-label="상세 내역 닫기" id="closeEstimateDrawer" type="button">×</button></div><div class="estimate-drawer-scroll"><aside aria-label="예상 소요일수 결과" class="result-col"><div class="result-panel" id="estimateResult"><div class="result-header"><div class="result-kicker">YOUR ESTIMATE</div><div class="result-label">예상 작업 투입일수</div><div aria-live="polite" class="big-result" id="totalDisplay">—</div><div class="result-caption" id="resultCaption">왼쪽에서 제작물을 선택해 주세요.</div></div><div class="result-actions"><button class="erp-action" disabled="" id="openErp" type="button">ERP 요청서용 정리 · 복사  →</button><button class="primary" disabled="" id="copyResult" type="button">계산 결과 복사</button><div class="sub-actions"><button class="secondary" id="resetAll" type="button">처음부터 다시 계산</button><button class="secondary" id="printResult" type="button">결과 인쇄</button></div><button class="secondary hidden" id="shareLink" type="button">선택 조건 링크 복사</button></div><div class="result-body"><div class="item-summary" id="itemSummary"><small>선택한 제작물</small><strong id="resultItemName">제작물을 선택해 주세요</strong><em id="resultItemScope">제작물별 기본 공수를 확인할 수 있어요.</em></div><div class="breakdown-head">산정 내역</div><div class="breakdown" id="breakdown"><div class="line-row"><span>기본 디자인</span><strong>—</strong></div></div><div class="total-foot"><span>총 예상 작업량</span><strong id="footTotal">—</strong></div><details class="scope-details"><summary>선택한 제작물의 산정 범위·제외사항</summary><p id="scopeNote">제작물 선택 후 확인할 수 있습니다.</p></details><div class="benchmark-card" id="benchmarkCard"><div class="benchmark-head"><span>크몽·숨고 참고 작업일</span><small>외부 판매자 안내 기간 · 확정 납기 아님</small></div><div class="benchmark-mini" id="benchmarkMini">제작물을 선택하면 비교 사례가 표시돼요.</div><button class="benchmark-open" disabled="" id="openEvidence" type="button"><span>산정 근거와 원문 보기</span><span aria-hidden="true">↗</span></button></div></div></div><div class="result-small"><strong>꼭 확인해 주세요</strong><p>표시된 시간은 1명이 작업에 투입되는 추정 공수입니다. 요청 후 완료까지의 영업일수나 납기를 의미하지 않으며, 일정·우선순위·컨펌·업무 중요도와 논의 내용에 따라 달라질 수 있습니다.</p></div></aside></div></section></div><script src="./assets/js/app.js"></script></body></html>
