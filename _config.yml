@@ -1,0 +1,6 @@
+# GitHub Pages deploy-from-branch build with Jekyll.
+# GitHub repository metadata automatically supplies the correct absolute share-image URL.
+title: "SUDAM DESIGN"
+description: "디자인 예상 소요일수 계산기"
+plugins:
+  - jekyll-github-metadata
